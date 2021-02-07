@@ -9,11 +9,13 @@ function init3d(){
     div=document.getElementById('div3d');
     div.appendChild(renderer3d.domElement);
     controls3d=new THREE.OrbitControls(camera3d, renderer3d.domElement);
-    controls3d.addEventListener('onchange', render);
+    controls3d.addEventListener('change', onWindowResize);
     let axes=new THREE.AxesHelper(5);
+    draw3d();
     scene3d.add(axes);
     render();
 }
+
 
 function genShape(poly){
     let s=new THREE.Shape();
@@ -37,6 +39,7 @@ function genShape(poly){
     });
     var me=new THREE.Mesh(g,m);
     meshArr.push(me);
+    NUM_PARTITIONS++;
 }
 
 function getRandomColor(){
@@ -45,6 +48,14 @@ function getRandomColor(){
     let bl=parseInt(Math.random()*255);
     s= "rgb("+re+","+gr+","+bl+")";
     return s;
+}
+
+function genCentroid(p){
+    let g=new THREE.SphereGeometry(0.5,30,30);
+    let m=new THREE.MeshBasicMaterial({color:0xff00ee});
+    let me=new THREE.Mesh(g,m);
+    me.position.set(p.x,p.y,0);
+    scene3d.add(me);
 }
 
 function draw3d(){
@@ -56,10 +67,11 @@ function draw3d(){
     meshArr=[];
 
     let data=DATA;
-    let res=data['result'];
-    res.forEach(arr=>{
-        polyArr=arr.polygon;
-        genShape(polyArr);
+    // console.log(data); //works fine
+    let res=data['partitions'];
+    res.forEach(parcel=>{
+        genShape(parcel.parcel.poly_points);
+        genCentroid(parcel.parcel.centroid);
     });
 
     meshArr.forEach(me=>{
@@ -71,11 +83,11 @@ function onWindowResize(){
     camera3d.aspect=WIDTH/HEIGHT;
     camera3d.updateProjectionMatrix();
     renderer3d.setSize(WIDTH, HEIGHT);
+    render();
 }
 
 function render(){
-    draw3d();
-    onWindowResize();
+    NUM_PARTITIONS=0;
     renderer3d.render(scene3d, camera3d);
-    requestAnimationFrame(render);
+    // requestAnimationFrame(render);
 }

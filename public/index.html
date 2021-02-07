@@ -20,19 +20,20 @@
     <div id="div3d"></div>
     <script src="gen3d.js"></script>
     <script>
-        // let url_='http://127.0.0.1:5500/api/get/partitions';
-        let url_='https://apipw.azurewebsites.net/api/get/partitions';
+        let url_='http://127.0.0.1:5100/api/get/partitions';
+        // let url_='https://apipw.azurewebsites.net/api/get/partitions';
         const jsonData={
-            "number":256,
+            "number":5,
             "polygon":[
-                {"x":0,"y":0}, 
-                {"x":10,"y":0}, 
                 {"x":10,"y":10}, 
-                {"x":0,"y":10},
-                {"x":0,"y":0}
+                {"x":30,"y":10}, 
+                {"x":20,"y":25}, 
+                {"x":10,"y":30},
+                {"x":10,"y":10}
             ]
         };
         let DATA=[];
+        let NUM_PARTITIONS=1;
         var WIDTH=window.innerWidth, HEIGHT=window.innerHeight;
         var scene3d, camera3d, controls3d, renderer3d;
         var meshArr=[];
