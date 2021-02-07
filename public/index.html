@@ -16,25 +16,51 @@
 
 <body>
     <h1>Generative Design API- client</h1>
+    <table>
+        <tr>
+            <td>
+                End point of rest api
+            </td>
+            <td>
+                <input type="text" id="url" 
+                value='http://127.0.0.1:3100/api/get/partitions'
+                style="width:300px;"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Input Num of Parcels
+            </td>
+            <td>
+                <input type="number" value="5" id="num_partitions" style="width:300px;"/>
+            </td>
+        </tr>
+    </table>
+    <br/>
+    <br/>
     <button id="generate"> <span style="font-size: 16px; padding:30px;">GENERATE</span></button>
     <div id="div3d"></div>
     <script src="gen3d.js"></script>
     <script>
-        let url_='http://127.0.0.1:5100/api/get/partitions';
-        // let url_='https://apipw.azurewebsites.net/api/get/partitions';
+        // let url_='http://127.0.0.1:5100/api/get/partitions';
+        let url_='https://apipw.azurewebsites.net/api/get/partitions';
+        // let url_=document.getElementById("url").value;
+        console.log(url_)
+        let num=document.getElementById("num_partitions").value;
         const jsonData={
-            "number":5,
+            "number":parseInt(num),
             "polygon":[
-                {"x":10,"y":10}, 
-                {"x":30,"y":10}, 
+                {"x":0,"y":0}, 
+                {"x":30,"y":0}, 
                 {"x":20,"y":25}, 
                 {"x":10,"y":30},
-                {"x":10,"y":10}
+                {"x":0,"y":10}
             ]
         };
         let DATA=[];
         let NUM_PARTITIONS=1;
-        var WIDTH=window.innerWidth, HEIGHT=window.innerHeight;
+       // var WIDTH=window.innerWidth-300, HEIGHT=window.innerHeight-300;
+       var WIDTH=500, HEIGHT=500;
         var scene3d, camera3d, controls3d, renderer3d;
         var meshArr=[];
         $(function () {

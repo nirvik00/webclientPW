@@ -2,7 +2,7 @@ function init3d(){
     scene3d=new THREE.Scene();
     scene3d.background=new THREE.Color(0xffffff);
     camera3d=new THREE.PerspectiveCamera(45, WIDTH/HEIGHT, 0.01, 1000);
-    camera3d.position.set(25,25,50);
+    camera3d.position.set(50,50,25);
     camera3d.up=new THREE.Vector3(0,0,1);
     renderer3d=new THREE.WebGLRenderer();
     renderer3d.setSize(WIDTH, HEIGHT);
