@@ -43,18 +43,9 @@
     <script src="gen3d.js"></script>
     <script>
         // let url_='http://127.0.0.1:5100/api/get/partitions';
-        // let url_='https://apipw.azurewebsites.net/api/get/partitions';
-        let url_=(document.getElementById("url").value).toString();
-        let num_=parseInt(document.getElementById("num_partitions").value);
-        const jsonData={
-            "number":15,
-            "polygon":[
-                {"x":0,"y":0}, 
-                {"x":30,"y":0}, 
-                {"x":50,"y":30}, 
-                {"x":0,"y":30},
-            ]
-        };
+        let url_='https://apipw.azurewebsites.net/api/get/partitions';
+        // let url_=(document.getElementById("url").value).toString();
+        
         let DATA=[];
         let NUM_PARTITIONS=1;
        // var WIDTH=window.innerWidth-300, HEIGHT=window.innerHeight-300;
@@ -63,6 +54,17 @@
         var meshArr=[];
         $(function () {
             $('#generate').on('click', function(e){
+                let num_=parseInt(document.getElementById("num_partitions").value);
+                const jsonData={
+                    "number":num_,
+                    "polygon":[
+                        {"x":0,"y":0}, 
+                        {"x":30,"y":0}, 
+                        {"x":50,"y":30}, 
+                        {"x":0,"y":30},
+                    ]
+                };
+
                 e.preventDefault();
                 console.log('generate');
                 $.ajax({
