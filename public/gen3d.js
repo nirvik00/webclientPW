@@ -1,4 +1,8 @@
 function init3d(){
+    div=document.getElementById('div3d');
+    while (div.children.length > 0){
+        div.removeChild(div.firstChild)
+    }
     scene3d=new THREE.Scene();
     scene3d.background=new THREE.Color(0xffffff);
     camera3d=new THREE.PerspectiveCamera(45, WIDTH/HEIGHT, 0.01, 1000);
@@ -6,7 +10,6 @@ function init3d(){
     camera3d.up=new THREE.Vector3(0,0,1);
     renderer3d=new THREE.WebGLRenderer();
     renderer3d.setSize(WIDTH, HEIGHT);
-    div=document.getElementById('div3d');
     div.appendChild(renderer3d.domElement);
     controls3d=new THREE.OrbitControls(camera3d, renderer3d.domElement);
     controls3d.addEventListener('change', onWindowResize);
