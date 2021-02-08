@@ -23,7 +23,7 @@
             </td>
             <td>
                 <input type="text" id="url" 
-                value='http://127.0.0.1:3100/api/get/partitions'
+                value='https://apipw.azurewebsites.net/api/get/partitions'
                 style="width:300px;"/>
             </td>
         </tr>
@@ -45,16 +45,15 @@
         // let url_='http://127.0.0.1:5100/api/get/partitions';
         let url_='https://apipw.azurewebsites.net/api/get/partitions';
         // let url_=document.getElementById("url").value;
-        console.log(url_)
-        let num=document.getElementById("num_partitions").value;
+        let num_=document.getElementById("num_partitions").value;
+        console.log(url_, num_);
         const jsonData={
-            "number":parseInt(num),
+            "number":25,
             "polygon":[
                 {"x":0,"y":0}, 
                 {"x":30,"y":0}, 
-                {"x":20,"y":25}, 
-                {"x":10,"y":30},
-                {"x":0,"y":10}
+                {"x":50,"y":30}, 
+                {"x":0,"y":30},
             ]
         };
         let DATA=[];
