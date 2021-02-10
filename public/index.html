@@ -12,75 +12,79 @@
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
         crossorigin="anonymous"></script>
     <title>API-PW-Client</title>
+    <style>
+        #inputs{
+            position:fixed;
+            float:left;
+        }
+        #div3d{
+            position:relative;
+            float:right;
+            margin-left:400;
+            border:1px solid black;
+        }
+    </style>
 </head>
 
 <body>
     <h1>Generative Design API- client</h1>
-    <table>
-        <tr>
-            <td>
-                End point of rest api
-            </td>
-            <td>
-                <input type="text" id="url" 
-                value='https://apipw.azurewebsites.net/api/get/partitions'
-                style="width:300px;"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Input Num of Parcels
-            </td>
-            <td>
-                <input type="number" value="5" id="num_partitions" style="width:300px;"/>
-            </td>
-        </tr>
-    </table>
-    <br/>
-    <br/>
-    <button id="generate"> <span style="font-size: 16px; padding:30px;">GENERATE</span></button>
-    <div id="div3d"></div>
+    <div id="container">
+        <div id="inputs">
+            <table>
+                <tr>
+                    <td>
+                        End point of rest api
+                    </td>
+                    <td>
+                        <p>
+                            https://apipw.azurewebsites.net/api/get/partitions
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Input Num of Parcels
+                    </td>
+                    <td>
+                        <input type="number" value="5" id="num_partitions" style="width:100px;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Input FSR of Site
+                    </td>
+                    <td>
+                        <input type="number" value="1.25" id="fsr" style="width:100px;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Floor Height
+                    </td>
+                    <td>
+                        <input type="number" value="3.0" id="floor_height" style="width:100px;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Parcel Information : Polygon json
+                    </td>
+                    <td>
+                        <textarea id="polygon" rows="10" cols="25"></textarea>
+                    </td>
+                </tr>
+            </table>
+            <br/>
+            <br/>
+            <button id="generate"> <span style="font-size: 16px; padding:30px;">GENERATE</span></button>
+            <button id="default"> <span style="font-size: 16px; padding:30px;">DEFAULT</span></button>
+        </div>
+        <div id="div3d"></div>
+    </div>
+    
+    
+
     <script src="gen3d.js"></script>
-    <script>
-        // let url_='http://127.0.0.1:5100/api/get/partitions';
-        let url_='https://apipw.azurewebsites.net/api/get/partitions';
-        // let url_=(document.getElementById("url").value).toString();
-        
-        let DATA=[];
-        let NUM_PARTITIONS=1;
-       // var WIDTH=window.innerWidth-300, HEIGHT=window.innerHeight-300;
-       var WIDTH=500, HEIGHT=500;
-        var scene3d, camera3d, controls3d, renderer3d;
-        var meshArr=[];
-        $(function () {
-            $('#generate').on('click', function(e){
-                let num_=parseInt(document.getElementById("num_partitions").value);
-                const jsonData={
-                    "number":num_,
-                    "polygon":[
-                        {"x":0,"y":0}, 
-                        {"x":30,"y":0}, 
-                        {"x":50,"y":30}, 
-                        {"x":0,"y":30},
-                    ]
-                };
-
-                e.preventDefault();
-                console.log('generate');
-                $.ajax({
-                url:url_,
-                method: 'POST',
-                contentType: 'application/JSON',
-                data: JSON.stringify(jsonData),
-                success: function (res) {
-                    DATA=res;
-                    init3d();
-                },
-		    });
-            })
-        });
-
-    </script>
-
+    <script src="dataProc.js"></script>
 </body>
 </html>

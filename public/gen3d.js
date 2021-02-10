@@ -19,7 +19,6 @@ function init3d(){
     render();
 }
 
-
 function genShape(poly){
     let s=new THREE.Shape();
     s.moveTo(poly[0].x, poly[0].y);
@@ -42,7 +41,6 @@ function genShape(poly){
     });
     var me=new THREE.Mesh(g,m);
     meshArr.push(me);
-    NUM_PARTITIONS++;
 }
 
 function getRandomColor(){
