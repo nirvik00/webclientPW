@@ -19,7 +19,7 @@ function init3d(){
     render();
 }
 
-function genShape(poly){
+function genShape(poly, ht_inp){
     let s=new THREE.Shape();
     s.moveTo(poly[0].x, poly[0].y);
     for(let i=1; i<poly.length; i++){
@@ -28,7 +28,7 @@ function genShape(poly){
     s.autoClose = true;
     var e={
         steps: 1,
-        depth:1,
+        depth:ht_inp,
         bevelEnabled:false
     }
     getRandomColor();
@@ -69,10 +69,16 @@ function draw3d(){
 
     let data=DATA;
     // console.log(data); //works fine
-    let res=data['partitions'];
-    res.forEach(parcel=>{
-        genShape(parcel.parcel.poly_points);
-        genCentroid(parcel.parcel.centroid);
+    let resPartitions=data['partitions'];
+    k=0
+    resPartitions.forEach(res=>{
+        obj=resPartitions[k];
+        let ht=res.parcel.building_height;
+        genShape(res.parcel.parcel_poly_points, 0.25);
+        genCentroid(res.parcel.centroid);
+        genShape(res.parcel.footprint_poly_points, ht);
+        console.log(obj);
+        k++;
     });
 
     meshArr.forEach(me=>{
