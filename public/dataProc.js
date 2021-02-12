@@ -1,5 +1,5 @@
-let url_='http://127.0.0.1:5500/api/get/partitions';
-// let url_='https://apipw.azurewebsites.net/api/get/partitions';
+// let url_='http://127.0.0.1:5500/api/get/partitions';
+let url_='https://apipw.azurewebsites.net/api/get/partitions';
 
 let DATA=[];
 let NUM_PARTITIONS=1;
