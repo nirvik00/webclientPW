@@ -19,7 +19,7 @@ function init3d(){
     render();
 }
 
-function genShape(poly, ht_inp){
+function genShape(poly, ht_inp, colr=0){
     let s=new THREE.Shape();
     s.moveTo(poly[0].x, poly[0].y);
     for(let i=1; i<poly.length; i++){
@@ -28,13 +28,12 @@ function genShape(poly, ht_inp){
     s.autoClose = true;
     var e={
         steps: 1,
-        depth:ht_inp,
+        depth: ht_inp,
         bevelEnabled:false
     }
-    getRandomColor();
     var g=new THREE.ExtrudeGeometry(s,e);
     var m=new THREE.MeshBasicMaterial({
-        color:0x00ee00,
+        color:getColor(colr),
         opacity:0.5,
         transparent:true,
         wireframe:true
@@ -43,12 +42,11 @@ function genShape(poly, ht_inp){
     meshArr.push(me);
 }
 
-function getRandomColor(){
-    let re=parseInt(Math.random()*255);
-    let gr=parseInt(Math.random()*255);
-    let bl=parseInt(Math.random()*255);
-    s= "rgb("+re+","+gr+","+bl+")";
-    return s;
+function getColor(t=0){
+    if(t===0)
+        return 0xff0000;
+    else
+        return 0x0000ff;
 }
 
 function genCentroid(p){
@@ -74,9 +72,9 @@ function draw3d(){
     resPartitions.forEach(res=>{
         obj=resPartitions[k];
         let ht=res.parcel.building_height;
-        genShape(res.parcel.parcel_poly_points, 0.25);
+        genShape(res.parcel.parcel_poly_points, 0.25, 1);
         genCentroid(res.parcel.centroid);
-        genShape(res.parcel.footprint_poly_points, ht);
+        genShape(res.parcel.footprint_poly_points, ht, 0);
         console.log(obj);
         k++;
     });
