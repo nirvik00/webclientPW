@@ -14,7 +14,7 @@ function init3d() {
 	div.appendChild(renderer3d.domElement);
 	controls3d = new THREE.OrbitControls(camera3d, renderer3d.domElement);
 	controls3d.addEventListener('change', onWindowResize);
-	let axes = new THREE.AxesHelper(5);
+	let axes = new THREE.AxesHelper(150);
 	addLight();
 	draw3d();
 	scene3d.add(axes);
@@ -22,37 +22,8 @@ function init3d() {
 }
 
 function addLight() {
-	let CAST_SHADOW = false;
-	let light1 = new THREE.PointLight(0xffffff, 1, 1500);
-	light1.position.set(0, 0, 100);
-	light1.castShadow = CAST_SHADOW;
+	let light1 = new THREE.AmbientLight(0xffffff);
 	scene3d.add(light1);
-
-	let light2 = new THREE.PointLight(0xffffff, 1, 1500);
-	light2.position.set(100, 0, 100);
-	light2.castShadow = CAST_SHADOW;
-	scene3d.add(light2);
-
-	let light3 = new THREE.PointLight(0xffffff, 1, 1500);
-	light3.position.set(100, 100, 100);
-	light3.castShadow = CAST_SHADOW;
-	scene3d.add(light3);
-
-	let light4 = new THREE.PointLight(0xffffff, 1, 1500);
-	light4.position.set(0, 100, 100);
-	light4.castShadow = CAST_SHADOW;
-	scene3d.add(light4);
-	scene3d.add(light3);
-
-	let light5 = new THREE.PointLight(0xffffff, 1, 1500);
-	light5.position.set(200, 100, 100);
-	light5.castShadow = CAST_SHADOW;
-	scene3d.add(light5);
-
-	let light6 = new THREE.PointLight(0xffffff, 1, 1500);
-	light6.position.set(100, 200, 100);
-	light6.castShadow = CAST_SHADOW;
-	scene3d.add(light6);
 }
 
 function addFloors(poly, ht_inp) {
@@ -150,7 +121,7 @@ function draw3d() {
 	} catch (err) {
 		console.log('Error!!!');
 	}
-	let pl = new THREE.PlaneGeometry(700, 700, 350);
+	let pl = new THREE.PlaneGeometry(1200, 1200, 350);
 	let mtl = new THREE.MeshPhongMaterial({
 		color: new THREE.Color('rgb(255, 255, 255)'),
 	});

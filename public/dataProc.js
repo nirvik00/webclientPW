@@ -1,15 +1,24 @@
-// let url_ = 'http://127.0.0.1:5200/api/get/partitions';
-let url_ = 'https://apipw2.azurewebsites.net/api/get/partitions';
+let url_ = 'http://127.0.0.1:5500/api/get/partitions';
+// let url_ = 'https://apipw2.azurewebsites.net/api/get/partitions';
 
 let DATA = [];
 let NUM_PARTITIONS = 1;
-
 let defaultPolyData = [
 	{ x: -200, y: -200 },
 	{ x: 200, y: -200 },
 	{ x: 200, y: 200 },
 	{ x: -200, y: 200 },
 ];
+
+/*
+let defaultPolyData = [
+	{ x: 0, y: 0 },
+	{ x: -179.88, y: -333.89 },
+	{ x: 259.87, y: -370.31 },
+	{ x: -322.81, y: -168.26 },
+];
+*/
+
 document.getElementById('polygon').value = JSON.stringify(defaultPolyData);
 // var WIDTH=window.innerWidth-300;
 // var HEIGHT=window.innerHeight-300;

@@ -1,0 +1,21 @@
+
+let defaultPolyData = [
+	{ x: -200, y: -200 },
+	{ x: 200, y: -200 },
+	{ x: 200, y: 200 },
+	{ x: -200, y: 200 },
+];
+
+let jsonData = {
+			peripheral: true,
+			subdivision: true,
+			number: num_,
+			fsr: fsr_,
+			floorHeight: flr_ht_,
+			peripheralDepth: peripheral_depth_,
+			setback: setback_,
+			polygon: polyData,
+			deviation: deviation,
+			courtyard_depth: courtyard_depth_,
+			courtyard_number: courtyard_number_,
+		};
